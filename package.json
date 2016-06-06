@@ -4,6 +4,7 @@
   "description": "Example repository for market pricing feature for Traktor",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "./node_modules/mocha/bin/mocha ."
   },
   "repository": {
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/CodeAllianceOrg/traktor-googleserve2016#readme",
   "dependencies": {
     "express": "^4.13.4"
+  },
+  "engines": {
+    "node": "4.1.1"
   }
 }
