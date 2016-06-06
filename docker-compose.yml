@@ -1,3 +1,16 @@
+acceptance_test:
+  build: .
+  command: ./node_modules/mocha/bin/mocha acceptance_test/
+  links:
+    - "app:app"
+
+app:
+  build: .
+  links:
+    - "postgres:postgres"
+  environment:
+    - "DATABASE_URL=postgres://postgres:testpw@postgres:5432/postgres"
+
 test:
   build: .
   command: ./node_modules/mocha/bin/mocha test/
