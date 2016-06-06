@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hackathon</title>
+	<link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="../_assets/css/jqm-demos.css">
+	<script src="../js/jquery.js"></script>
+	<script src="../_assets/js/index.js"></script>
+	<script src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+<div data-role="page" class="jqm-demos" data-quicklinks="true">
+<div role="main" class="ui-content jqm-content">
+<center><h1> Market Prices </h1></center>
+	<div data-demo-html="true">
+		<div data-role="tabs">
+			<div data-role="navbar">
+				<ul>
+			      <li><a href="#one" data-theme="a" data-ajax="false">Dashboard</a></li>
+			      <li><a href="#two" data-theme="a" data-ajax="false">Submit</a></li>
+			    </ul>
+			</div>
+
+			<div id="one" class="ui-content">
+			<h1>First tab contents</h1>
+			</div>
+			<div id="two" class="ui-content">
+
+<form>
+<fieldset data-role="controlgroup">
+    <legend>Vertical controlgroup:</legend>
+<form>
+<div class="ui-field-contain">
+    <label for="select-native-1">Select a market</label>
+    <select name="select-native-1" id="select-native-1">
+        <option value="Tbilsi">- Tbilsi</option>
+        <option value="Kutaisi">- Kutaisi</option>
+        <option value="Gori">- Gori</option>
+    </select>
+</div>
+</form>
+    <label for="select-native-5">Select A Market</label>
+    <select name="select-native-5" id="select-native-5">
+        <option value="#">One</option>
+        <option value="#">Two</option>
+        <option value="#">Three</option>
+    </select>
+    <label for="select-native-6">Select B</label>
+    <select name="select-native-6" id="select-native-6">
+        <option value="#">One</option>
+        <option value="#">Two</option>
+        <option value="#">Three</option>
+    </select>
+    <label for="select-native-7">Select C</label>
+    <select name="select-native-7" id="select-native-7">
+        <option value="#">One</option>
+        <option value="#">Two</option>
+        <option value="#">Three</option>
+    </select>
+</fieldset>
+</form>
+
+				<ul data-role="listview">
+				    <li><a href="#">Acura</a></li>
+				    <li><a href="#">Audi</a></li>
+				    <li><a href="#">BMW</a></li>
+				    <li><a href="#">Cadillac</a></li>
+				    <li><a href="#">Ferrari</a></li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
+			<p>jQuery Mobile Demos version <span class="jqm-version"></span></p>
+			<p>Copyright 2014 The jQuery Foundation</p>
+		</div><!-- /footer -->
+	</div>
+</div><!-- /page -->
+</body>
+</html>

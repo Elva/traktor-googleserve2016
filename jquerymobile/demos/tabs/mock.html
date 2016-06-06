@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hackathon</title>
+	<link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+ <link rel="stylesheet" href="http://cdn.rawgit.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.css">
+	<link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="../_assets/css/jqm-demos.css">
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../_assets/js/index.js"></script>
+	<script src="../js/jquery.mobile-1.4.5.min.js"></script>
+<script src="http://cdn.rawgit.com/jquery/jquery-ui/1.10.4/ui/jquery.ui.datepicker.js"></script>
+    <script id="mobile-datepicker" src="http://cdn.rawgit.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.js"></script>
+  </head>
+
+<body>
+
+<!-- main page -->
+<div data-role="page">
+<div role="main" class="ui-content jqm-content">
+
+<!-- main title -->
+<center><h1> Market Prices </h1></center>
+	<div>
+<!-- tab content -->
+		<div data-role="tabs">
+			<!-- tab header -->
+			<div data-role="navbar">
+				<ul>
+			      <li><a href="#one"  class="ui-btn-active" data-theme="a" data-ajax="false">Dashboard</a></li>
+			      <li><a href="#two" data-theme="a" data-ajax="false">Submit</a></li>
+			    </ul>
+			</div>
+
+<!-- dashboard tab -->
+			<div id="one" class="ui-content">
+<hr/>
+<!-- Prices segment -->
+<h2>Real time prices </h2>
+<table data-role="table" id="table-column-toggle" 
+ class="ui-responsive table-stroke table-stripe">
+     <thead>
+       <tr>
+         <th>Crop</th>
+         <th data-priority="2" width="10%">Price</th>
+         <th data-priority="3" width="10%">Trend</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr>
+         <th>Wheat</th>
+         <td>1.4
+         <td> <a href="#" class="ui-btn ui-corner-all ui-icon-arrow-u ui-btn-icon-notext"></a> </td>
+       </tr>
+       <tr>
+         <th>Corn</th>
+         <td>0.4</td>
+         <td> <a href="#" class="ui-btn ui-corner-all ui-icon-arrow-d ui-btn-icon-notext"></a> </td>
+       </tr>
+       <tr>
+         <th>Oat</th>
+         <td>4.4</td>
+         <td> <a href="#" class="ui-btn ui-corner-all ui-icon-arrow-u ui-btn-icon-notext"></a> </td>
+       </tr>
+       <tr>
+         <th>Cotton</th>
+         <td>2.4</td>
+         <td> <a href="#" class="ui-btn ui-corner-all ui-icon-arrow-u ui-btn-icon-notext"></a> </td>
+       </tr>
+     </tbody>
+   </table>
+<br>
+<hr/>
+
+<h2>Monthly Price Trend</h2>
+
+<!-- controls to display monthly price trends -->
+<fieldset class="ui-grid-d">
+<div class="ui-block-a">
+	    <select name="select-native-1" id="select-native-1">
+		<option value="USD">All Markets</option>
+		<option value="USD">Tblisi</option>
+		<option value="Pesos">Gori</option>
+	    </select>
+</div>
+<div class="ui-block-b">
+</div>
+<div class="ui-block-c">
+</div>
+<div class="ui-block-d">
+From: <input type="text" data-role="date" >
+</div>
+<div class="ui-block-e">
+To: <input type="text" data-role="date" >
+</div>
+</fieldset>
+
+<!-- div to display the chart for monthly price trend -->
+<div id="price_trend" style="height: 350px; width: 100%;"
+></div>
+<hr>
+
+<h2>Yearly price trend</h2>
+
+<!-- controls to display the chart for yearly price trend -->
+<fieldset class="ui-grid-d">
+<div class="ui-block-a">
+	    <select name="select-native-1" id="select-native-1">
+		<option value="USD">Choose a product</option>
+		<option value="USD">Wheat</option>
+		<option value="USD">Corn</option>
+		<option value="Pesos">Oat</option>
+	    </select>
+</div>
+<div class="ui-block-b">
+	    <select name="select-native-1" id="select-native-1">
+		<option value="USD">All Markets</option>
+		<option value="USD">Tblisi</option>
+		<option value="Pesos">Gori</option>
+	    </select>
+</div>
+<div class="ui-block-b">
+</div>
+<div class="ui-block-c">
+	    <select name="select-native-1" id="select-native-1">
+		<option value="USD">2013</option>
+		<option value="USD">2014</option>
+		<option value="Pesos">2015</option>
+	    </select>
+</div>
+<div class="ui-block-d">
+	    <select name="select-native-1" id="select-native-1">
+		<option value="USD">2013</option>
+		<option value="USD">2014</option>
+		<option value="Pesos">2015</option>
+	    </select>
+</div>
+</fieldset>
+
+<!-- div to populate the yearly trend -->
+<div id="yearly_chart" style="height: 350px; width: 100%;"></div>
+<script type="text/javascript">
+<!-- sample script to populate the trend -->
+<!-- http://databits.io/bits/how-to-make-databits-with-google-vis-and-jquery-mobile?source=1&embed=0
+-->
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable
+            ([['Month', 'Wheat', 'Corn', 'Cotton', 'Oat'],
+              ['Jan', 2, 2, 3, 4, ],
+              ['Feb', 1, 3, 4, 5, ],
+              ['Mar', 3, 4, 3, 6, ],
+              ['Apr', 1, 5, 2, 7, ],
+              ['May', 3, 6, 1, 8, ],
+              ['Jun', 1, 7, 3, 9, ]
+        ]);
+        var options = {
+        pointSize: 4,
+	hAxis: {
+          title: 'Month'
+        },
+        vAxis: {
+          title: 'Price',
+        },
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('price_trend'));
+        chart.draw(data, options);
+
+        var data1 = google.visualization.arrayToDataTable
+            ([['Year', 'Wheat', 'Corn', 'Cotton', 'Oat'],
+              ['2003', 3, 2, 4, 10, ],
+              ['2005', 2, 3, 4, 5, ],
+              ['2006', 1, 4, 3, 6, ],
+              ['2007', 3, 5, 2, 7, ],
+              ['2008', 3, 6, 1, 8, ],
+              ['2009', 2, 7, 3, 9, ]
+        ]);
+        var options = {
+	hAxis: {
+          title: 'Year'
+        },
+        pointSize: 4,
+        vAxis: {
+          title: 'Price',
+        },
+        };
+
+        chart = new google.visualization.LineChart(document.getElementById('yearly_chart'));
+        chart.draw(data1, options);
+      }
+</script>
+
+<hr/>
+
+
+</div>
+
+<!-- submit tab -->
+
+<div id="two" class="ui-content">
+
+<form>
+<fieldset >
+<form>
+<h2 id="#selectmarket">Select a market </h2> 
+	<div >
+	<div class="ui-field-contain">
+	    <select name="select-native-1" id="select-native-1">
+		<option value="Tbilsi">- Tbilsi</option>
+		<option value="Kutaisi">- Kutaisi</option>
+		<option value="Gori">- Gori</option>
+	    </select>
+	</div>
+</div>
+
+<h2>Select a Product (crop) </h2> 
+	<div >
+	<div class="ui-field-contain">
+	    <select name="select-native-1" id="select-native-1">
+		<option value="Tbilsi">Wheat</option>
+		<option value="Kutaisi">Corn</option>
+		<option value="Gori">Oat</option>
+	    </select>
+	</div>
+
+<h2>Date</h2> 
+<input type="text" data-role="date" />
+</div>
+
+<h2>Price</h2>
+<fieldset class="ui-grid-a">
+<div class="ui-block-a">
+<input type="text" name="text-basic" id="text-basic" value="">
+</div>
+<div class="ui-block-b">
+	    <select name="select-native-1" id="select-native-1">
+		<option value="USD">USD</option>
+		<option value="Pesos">Pesos</option>
+	    </select>
+</div>
+
+</fieldset>
+<input type="submit" value="Submit">
+</div>
+
+</form>
+
+</div>
+
+</div>
+		<div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
+			<p>Copyright<span class="jqm-version"></span></p>
+		</div><!-- /footer -->
+	</div>
+</div><!-- /page -->
+</body>
+</html>
