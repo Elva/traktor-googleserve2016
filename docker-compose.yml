@@ -1,0 +1,13 @@
+test:
+  build: .
+  command: ./node_modules/mocha/bin/mocha test/
+  links:
+    - "postgres:postgres"
+  environment:
+    - "DATABASE_URL=postgres://postgres:testpw@postgres:5432/postgres"
+
+postgres:
+  image: postgres:latest
+  ports: [5432]
+  environment:
+    - "POSTGRES_PASSWORD=testpw"
