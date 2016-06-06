@@ -1,5 +1,7 @@
+
 db_clear_and_repopulate_data.sh:
 deletes records from all tables and re-populates them using dummy data
+requires psql installed
 
 db_create.sql:
 sql file that creates the database tables
