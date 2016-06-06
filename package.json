@@ -1,0 +1,19 @@
+{
+  "name": "traktor-googleserve2016",
+  "version": "1.0.0",
+  "description": "Example repository for market pricing feature for Traktor",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeAllianceOrg/traktor-googleserve2016.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/CodeAllianceOrg/traktor-googleserve2016/issues"
+  },
+  "homepage": "https://github.com/CodeAllianceOrg/traktor-googleserve2016#readme"
+}
