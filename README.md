@@ -1,8 +1,8 @@
 # traktor-googleserve2016
 Traktor Market Prices
 
-Main Collaborators:
+<p><b>Main Collaborators:</b></p>
 
-Vishal Zinjuvadia
-Vijay Eranti 
-Zora Tung
+<p>Vishal Zinjuvadia</p>
+<p>Vijay Eranti</p>
+<p>Zora Tung</p>
