@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "NOTE: Run 'docker build -t heroku-cli -f heroku-cli.dockerfile .' if you haven't or need to update the image."
+docker run -d -ti --name heroku-cli -v $(pwd):/code heroku-cli
+docker start -a -i heroku-cli
