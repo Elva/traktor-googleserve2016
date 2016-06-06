@@ -6,14 +6,14 @@ var pg = require('pg');
 var conString = process.env.DATABASE_URL || "postgres://postgres:Welcome123@localhost:5432/postgres";
 
 function runQuery(query) {
-  var client = new pg.Client(conString);
   return new Promise(function(resolve, reject) {
-    client.connect(function(err) {
+    // This invocation connects using automatic connection pools
+    pg.connect(conString, function(err, client, done) {
       if (err) {
         return reject(err);
       } else {
         client.query(query, function (err, result) {
-          client.end();
+          done();
           return err ? reject(err) : resolve(result);
         });
       }
