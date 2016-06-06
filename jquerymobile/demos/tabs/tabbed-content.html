@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hackathon</title>
+	<link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+ <link rel="stylesheet" href="http://cdn.rawgit.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.css">
+	<link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="../_assets/css/jqm-demos.css">
+	<script src="../js/jquery.js"></script>
+	<script src="../_assets/js/index.js"></script>
+	<script src="../js/jquery.mobile-1.4.5.min.js"></script>
+<script src="http://cdn.rawgit.com/jquery/jquery-ui/1.10.4/ui/jquery.ui.datepicker.js"></script>
+    <script id="mobile-datepicker" src="http://cdn.rawgit.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.js"></script>
+</head>
+<body>
+<div data-role="page" 
+<!-- class="jqm-demos"
+data-quicklinks="true" -->
+>
+<div role="main" class="ui-content jqm-content">
+<center><h1> Market Prices </h1></center>
+	<div >
+		<div data-role="tabs">
+			<div data-role="navbar">
+				<ul>
+			      <li><a href="#one" data-theme="a" data-ajax="false">Dashboard</a></li>
+			      <li><a href="#two" data-theme="a" data-ajax="false">Submit</a></li>
+			    </ul>
+			</div>
+
+			<div id="one" class="ui-content">
+<h2>Real time prices </h2>
+
+			</div>
+			<div id="two" class="ui-content">
+<h2>&nbsp;</h2>
+<p>
+<form>
+<fieldset >
+<form>
+<h2>Select a market </h2> 
+	<div >
+	<div class="ui-field-contain">
+	<!--
+	    <label for="select-native-1"></label>
+	-->
+	    <select name="select-native-1" id="select-native-1">
+		<option value="Tbilsi">- Tbilsi</option>
+		<option value="Kutaisi">- Kutaisi</option>
+		<option value="Gori">- Gori</option>
+	    </select>
+	</div>
+</div>
+<h2>Select a Product (crop) </h2> 
+	<div >
+	<div class="ui-field-contain">
+	    <select name="select-native-1" id="select-native-1">
+		<option value="Tbilsi">- Tbilsi</option>
+		<option value="Kutaisi">- Kutaisi</option>
+		<option value="Gori">- Gori</option>
+	    </select>
+	</div>
+<h2>Date</h2> 
+<input type="text" data-role="date" >
+</div>
+<h2>Price</h2>
+<fieldset class="ui-grid-a">
+<div class="ui-block-a">
+<input type="text" name="text-basic" id="text-basic" value="">
+</div>
+<div class="ui-block-b">
+	    <select name="select-native-1" id="select-native-1">
+		<option value="USD">USD</option>
+		<option value="Pesos">Pesos</option>
+	    </select>
+</div>
+</fieldset>
+<input type="submit" value="Submit">
+</div>
+
+</form>
+
+			</div>
+		</div>
+		<div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
+			<p>Copyright<span class="jqm-version"></span></p>
+		</div><!-- /footer -->
+	</div>
+</div><!-- /page -->
+</body>
+</html>
