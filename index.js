@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var CropUtil = require('./app/crop-util');
 var MarketUtil = require('./app/market-util');
 var SubmitReportedPrice = require('./app/submit-reported-price');
+var GetMarketPrice = require('./app/get-market-price');
 
 var app = express();
 app.use(bodyParser());
@@ -42,6 +43,17 @@ app.post("/market-price/:crop_variety/:market", function (req, res) {
       res.status(400).send("failed");
     }
   );
+});
+
+app.get("/market-price/:crop_variety/:market", function (req, res) {
+  GetMarketPrice.getLatestPrice(parseInt(req.params.crop_variety), parseInt(req.params.market))
+    .then(function (result) {
+        res.send(result);
+      },
+      function (e) {
+        console.error(e);
+        res.status(400).send("failed");
+      });
 });
 
 app.set('port', process.env.PORT || 5000);

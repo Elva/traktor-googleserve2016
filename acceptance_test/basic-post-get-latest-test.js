@@ -5,31 +5,7 @@
 
 var assert = require('assert');
 var RequestPromise = require('request-promise');
-
-/*
- function makeRequest(path, method, json_body) {
- var options = {
- hostname: 'app',
- port: 5000,
- path: path,
- method: method
- };
- var body = undefined;
- if (json_body !== undefined) {
- body = JSON.stringify(json_body);
- options.headers = {
- 'Content-Type': "application/json",
- 'Content-Length': body.length
- };
- }
- return new Promise(function(resolve, reject) {
- var request = http.request(options, function(res) {
- res.setEncoding('utf8');
- res.on('data', )
- })
- })
- }
- */
+var GetCropAndMarketHelper = require('./get-crop-and-market-helper');
 
 var uri_base = "http://app:5000";
 
@@ -47,19 +23,13 @@ function postPrice(crop, market) {
   return RequestPromise(options);
 }
 
-function getCropAndMarket() {
-  return RequestPromise(uri_base + "/info/markets").then(function (markets) {
-    markets = JSON.parse(markets);
-    assert.ok(markets.length > 0);
-    return RequestPromise(uri_base + "/info/crop-varieties").then(function (cropVarieties) {
-      cropVarieties = JSON.parse(cropVarieties);
-      assert.ok(cropVarieties.length > 0);
-      return {
-        crop: cropVarieties[0],
-        market: markets[0]
-      };
-    })
-  });
+function getLatestPrice(crop, market) {
+  var options = {
+    method: "GET",
+    uri: uri_base + "/market-price/" + crop + "/" + market,
+    json: true
+  };
+  return RequestPromise(options);
 }
 
 describe("post and get lastest flow", function () {
@@ -70,10 +40,14 @@ describe("post and get lastest flow", function () {
   });
 
   it("works", function () {
-    return getCropAndMarket().then(function (crop_and_market) {
+    return GetCropAndMarketHelper.getCropAndMarket().then(function (crop_and_market) {
       return postPrice(crop_and_market.crop.id, crop_and_market.market.id).then(function (response) {
         assert.equal(response, "succeeded");
-      })
+        return getLatestPrice(crop_and_market.crop.id, crop_and_market.market.id)
+          .then(function(response) {
+            assert.equal(response.price, 12.5);
+          });
+      });
     });
   });
 });
