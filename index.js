@@ -56,6 +56,17 @@ app.get("/market-price/:crop_variety/:market", function (req, res) {
       });
 });
 
+app.get("/price-trend/:crop_variety/:market/:time_bucket_resolution", function (req, res) {
+  GetMarketPrice.getPriceTrend(req.params.crop_variety, req.params.market, req.params.time_bucket_resolution)
+    .then(function (result) {
+        res.send(result);
+      },
+      function (e) {
+        console.error(e);
+        res.status(400).send("failed");
+      });
+});
+
 app.set('port', process.env.PORT || 5000);
 app.listen(app.get('port'), function () {
   console.log('Example app listening on port ' + app.get('port') + '!');
